@@ -62,197 +62,199 @@ const copyEmail = () => {
 </template>
 
 <style lang="scss" scoped>
+// 间距系统
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-2xl: 48px;
+
+// 颜色系统
+$bg-dark: #17171a;
+$bg-card: #242424;
+$border-color: #444;
+$text-muted: #9e9e9e;
+
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 10px 10px;
-    background-color: #17171a;
+    padding: $spacing-md;
+    background-color: $bg-dark;
     color: #f5f5f5;
 
-
-
     .card {
-        width: 1200px;
-        height: 700px;
-        border-radius: 20px;
-        padding: 20px;
-        background-color: #242424;
-        //阴影
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        width: 100%;
+        max-width: 800px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: $spacing-lg;
+        border-radius: $spacing-lg;
+        padding: $spacing-2xl $spacing-xl;
+        background-color: $bg-card;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 
         .avatar {
-            width: 200px;
-            height: 200px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
-            margin: 40px auto;
-
             background-color: #f5f5f5;
+            flex-shrink: 0;
 
             img {
                 width: 100%;
                 height: 100%;
                 border-radius: 50%;
+                object-fit: cover;
             }
         }
 
         h1 {
-            font-size: 40px;
-            text-align: center;
-            //字体加粗
-
+            font-size: 36px;
             font-weight: bold;
+            text-align: center;
+        }
 
-
+        > p {
+            font-size: 18px;
+            text-align: center;
+            color: $text-muted;
         }
 
         .item-container {
-            height: 160px;
             display: flex;
-            //压缩后换行
             flex-wrap: wrap;
-            //justify-content可选的值有：flex-start, flex-end, center, space-between, space-around
-            justify-content: space-around;
-            align-items: center;
+            justify-content: center;
+            gap: $spacing-md;
 
             .item {
-                width: 100px;
-                height: 50px;
-                //边框
-                border: 1px solid #444444;
-                border-radius: 10px;
+                min-width: 100px;
+                padding: $spacing-sm $spacing-md;
+                border: 1px solid $border-color;
+                border-radius: $spacing-sm;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                //鼠标移上去后放大
-                transition: all 0.3s ease-in-out;
+                cursor: default;
+                transition: all 0.25s ease;
 
                 &:hover {
-                    transform: scale(1.1);
+                    transform: scale(1.08);
+                    border-color: #666;
+                    background-color: rgba(255, 255, 255, 0.05);
                 }
-
-                //光标不变
-                cursor: default;
-
-                //第三个item
-
-
             }
-
-        }
-
-        p {
-            font-size: 20px;
-            text-align: center;
-            margin-top: 20px;
-            //浅色字体
-            color: #9e9e9e;
         }
 
         footer {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+            gap: $spacing-md;
+            padding-top: $spacing-md;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            width: 100%;
 
+            p {
+                font-size: 14px;
+                color: $text-muted;
+            }
         }
     }
 }
 
-/* 弹窗遮罩层 */
+// 弹窗遮罩层
 .modal-mask {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 999;
+    animation: fadeIn 0.2s ease;
 }
 
-/* 弹窗内容层 */
+// 弹窗内容层
 .modal-content {
-    width: 400px;
-    background: #242424;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    animation: fadeIn 0.3s ease;
+    width: 90%;
+    max-width: 400px;
+    background: $bg-card;
+    border-radius: $spacing-md;
+    padding: $spacing-lg;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
-/* 弹窗头部 */
+// 弹窗头部
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
+    padding-bottom: $spacing-md;
+    margin-bottom: $spacing-lg;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
-.modal-header h3 {
-    margin: 0;
-    color: white;
+    h3 {
+        margin: 0;
+        color: #f5f5f5;
+    }
 }
 
 .close-btn {
     border: none;
     background: transparent;
-    font-size: 20px;
-    color: #999;
+    font-size: 22px;
+    color: $text-muted;
     cursor: pointer;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 50%;
-    transition: background 0.3s;
+    transition: all 0.2s;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #f5f5f5;
+    }
 }
 
-.close-btn:hover {
-    background: #f5f5f5;
-    color: #666;
-}
-
-/* 弹窗内容 */
+// 弹窗内容
 .modal-body {
     text-align: center;
 }
 
 .email-text {
-    font-size: 18px;
-    color: #333;
-    margin: 0 0 20px 0;
+    font-size: 16px;
+    color: #ccc;
+    margin: 0 0 $spacing-lg;
     letter-spacing: 1px;
+    user-select: all;
 }
 
 .copy-btn {
-    padding: 8px 20px;
+    padding: $spacing-sm $spacing-lg;
     background: #409eff;
     color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: background 0.3s;
+    font-size: 14px;
+    transition: background 0.2s;
+
+    &:hover {
+        background: #66b1ff;
+    }
 }
 
-.copy-btn:hover {
-    background: #66b1ff;
-}
-
-/* 弹窗淡入动画 */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-20px);
     }
-
     to {
         opacity: 1;
-        transform: translateY(0);
     }
 }
 </style>
