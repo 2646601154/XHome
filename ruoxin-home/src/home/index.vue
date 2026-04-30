@@ -2,6 +2,10 @@
 import { ref } from "vue"
 const email = ref("xiaruoxinby@qq.com")
 const showEmailModal = ref(false)
+const githubUrl = "https://github.com/2646601154"
+const openGithub = () => window.open(githubUrl, "_blank")
+const bilibiliUrl = "https://space.bilibili.com/351278241?spm_id_from=333.1007.0.0"
+const openBilibili = () => window.open(bilibiliUrl, "_blank")
 
 const closeModal = () => {
     showEmailModal.value = false
@@ -45,8 +49,8 @@ const copyEmail = () => {
                     </div>
                 </div>
 
-                <div class="item">github</div>
-                <div class="item">bilibili</div>
+                <div class="item" @click="openGithub">github</div>
+                <div class="item" @click="openBilibili">bilibili</div>
             </div>
             <footer>
                 <p>备案一</p>
