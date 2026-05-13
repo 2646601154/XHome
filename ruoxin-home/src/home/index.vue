@@ -6,6 +6,8 @@ const githubUrl = "https://github.com/2646601154"
 const openGithub = () => window.open(githubUrl, "_blank")
 const bilibiliUrl = "https://space.bilibili.com/351278241?spm_id_from=333.1007.0.0"
 const openBilibili = () => window.open(bilibiliUrl, "_blank")
+const blogUrl = "https://web.xiaruoxin.cn"
+const openBlog = () => window.open(blogUrl, "_blank")
 
 const closeModal = () => {
     showEmailModal.value = false
@@ -31,7 +33,7 @@ const copyEmail = () => {
             <h1>Xiaruoxin</h1>
             <p>跨专业学习 Vue3 Java</p>
             <div class="item-container">
-                <div class="item">博客</div>
+                <div class="item" @click="openBlog">博客</div>
                 <div class="item">简历</div>
                 <div class="item" @click="showEmailModal = true">邮箱</div>
 
